@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/books")
@@ -45,7 +46,7 @@ public class BookApi {
         Optional<Book> created = bookServiceProvider.findByIsbn(isbn);
         Book book = created.orElse(new Book());
         Link link = getLink(isbn);
-        return new ResponseEntity<>(EntityModel.of(book, link), CREATED);
+        return new ResponseEntity<>(EntityModel.of(book, link), OK);
     }
 
 
