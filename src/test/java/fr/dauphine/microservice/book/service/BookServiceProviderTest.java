@@ -1,5 +1,6 @@
 package fr.dauphine.microservice.book.service;
 
+import fr.dauphine.microservice.book.dto.BookDto;
 import fr.dauphine.microservice.book.model.Book;
 import fr.dauphine.microservice.book.repository.BookRepository;
 import fr.dauphine.microservice.book.service.impl.BookServiceProviderImpl;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -48,7 +50,13 @@ public class BookServiceProviderTest {
     public void testFindByIsbn() {
         Book book = new Book().setIsbn("12345");
         when(bookRepository.findById("12345")).thenReturn(Optional.of(book));
-        assertEquals(Optional.of(book), bookServiceProvider.findByIsbn("12345"));
+        assertEquals(book, bookServiceProvider.findByIsbn("12345"));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testByUnknownIsbn() {
+        when(bookRepository.findById("12345")).thenThrow(NoSuchElementException.class);
+        bookServiceProvider.findByIsbn("12345");
     }
 
     @Test
@@ -86,6 +94,7 @@ public class BookServiceProviderTest {
     @Test
     public void testUpdateBook() {
         Book book = new Book().setIsbn("12345").setTitle("Ayrad");
+        when(bookRepository.findById("12345")).thenReturn(Optional.of(book));
         when(bookRepository.save(book)).thenReturn(new Book().setIsbn("12345").setTitle("Ayrad, 2nd edition"));
         book.setTitle("Ayrad, 2nd edition");
         assertEquals(book, bookServiceProvider.update(book));

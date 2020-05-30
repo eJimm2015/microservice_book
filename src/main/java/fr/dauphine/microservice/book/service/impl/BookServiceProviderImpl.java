@@ -4,10 +4,12 @@ package fr.dauphine.microservice.book.service.impl;
 import fr.dauphine.microservice.book.model.Book;
 import fr.dauphine.microservice.book.repository.BookRepository;
 import fr.dauphine.microservice.book.service.BookServiceProvider;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -27,8 +29,10 @@ public class BookServiceProviderImpl implements BookServiceProvider {
     }
 
     @Override
-    public Optional<Book> findByIsbn(String isbn) {
-        return bookRepository.findById(isbn);
+    public Book findByIsbn(String isbn) {
+        Optional<Book> byId = bookRepository.findById(isbn);
+        if(byId.isPresent()) return byId.get();
+        throw new NoSuchElementException(String.format("L'ISBN n°%s n'existe pas ",isbn));
     }
 
     @Override
@@ -53,7 +57,10 @@ public class BookServiceProviderImpl implements BookServiceProvider {
 
     @Override
     public Book update(Book book) {
-        return bookRepository.save(book);
+        Book byIsbn = findByIsbn(book.getIsbn());
+        Optional<Book> byId = bookRepository.findById(book.getIsbn());
+        if(byId.isPresent()) return bookRepository.save(byIsbn);
+        throw new NoSuchElementException(String.format("L'ISBN n°%s n'existe",book.getIsbn()));
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface BookServiceProvider {
     Book create(final Book book);
     List<Book> getAll();
-    Optional<Book> findByIsbn(final String isbn);
+    Book findByIsbn(final String isbn);
     List<Book> findByAuthor(final String authorName);
     List<Book> findByEditor(final String editor);
     List<Book> findByEdition(final int year);
