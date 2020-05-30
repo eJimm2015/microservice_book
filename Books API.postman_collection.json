@@ -27,21 +27,6 @@
 		{
 			"name": "Create Book",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "Dauphine2019",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "Moh1995",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [
 					{
