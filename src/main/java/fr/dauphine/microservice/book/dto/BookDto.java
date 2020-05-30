@@ -1,21 +1,20 @@
-package fr.dauphine.microservice.book.model;
+package fr.dauphine.microservice.book.dto;
 
+import fr.dauphine.microservice.book.model.Book;
 import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
 
-@Entity
-public class Book {
-    @Id
+public class BookDto extends RepresentationModel<BookDto> {
+
     private String isbn;
 
     public String getIsbn() {
         return isbn;
     }
 
-    public Book setIsbn(String isbn) {
+    public BookDto setIsbn(String isbn) {
         this.isbn = isbn;
         return this;
     }
@@ -29,7 +28,7 @@ public class Book {
         return author;
     }
 
-    public Book setAuthor(String author) {
+    public BookDto setAuthor(String author) {
         this.author = author;
         return this;
     }
@@ -38,7 +37,7 @@ public class Book {
         return title;
     }
 
-    public Book setTitle(String title) {
+    public BookDto setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -47,7 +46,7 @@ public class Book {
         return editor;
     }
 
-    public Book setEditor(String editor) {
+    public BookDto setEditor(String editor) {
         this.editor = editor;
         return this;
     }
@@ -56,7 +55,7 @@ public class Book {
         return edition;
     }
 
-    public Book setEdition(int edition) {
+    public BookDto setEdition(int edition) {
         this.edition = edition;
         return this;
     }
@@ -65,7 +64,7 @@ public class Book {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
+        BookDto book = (BookDto) o;
         return isbn.equals(book.isbn);
     }
 
@@ -85,5 +84,12 @@ public class Book {
                 '}';
     }
 
-
+    public BookDto fill(Book book) {
+        this.author = book.getAuthor();
+        this.edition = book.getEdition();
+        this.editor = book.getEditor();
+        this.isbn = book.getIsbn();
+        this.title = book.getTitle();
+        return this;
+    }
 }
