@@ -4,7 +4,6 @@ package fr.dauphine.microservice.book.service.impl;
 import fr.dauphine.microservice.book.model.Book;
 import fr.dauphine.microservice.book.repository.BookRepository;
 import fr.dauphine.microservice.book.service.BookServiceProvider;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,9 +56,8 @@ public class BookServiceProviderImpl implements BookServiceProvider {
 
     @Override
     public Book update(Book book) {
-        Book byIsbn = findByIsbn(book.getIsbn());
         Optional<Book> byId = bookRepository.findById(book.getIsbn());
-        if(byId.isPresent()) return bookRepository.save(byIsbn);
+        if(byId.isPresent()) return bookRepository.save(byId.get().update(book));
         throw new NoSuchElementException(String.format("L'ISBN n°%s n'existe",book.getIsbn()));
     }
 

@@ -1,7 +1,5 @@
 package fr.dauphine.microservice.book.model;
 
-import org.springframework.hateoas.RepresentationModel;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
@@ -85,5 +83,11 @@ public class Book {
                 '}';
     }
 
-
+    public Book update(Book book) {
+        if(Objects.nonNull(book.author)) this.author = book.author;
+        if(Objects.nonNull(book.editor)) this.editor = book.editor;
+        if(Objects.nonNull(book.title)) this.title = book.title;
+        if(book.edition != 0) this.edition = book.edition;
+        return this;
+    }
 }
