@@ -1,6 +1,5 @@
 {
 	"info": {
-		"_postman_id": "68f3a78e-3a74-49c7-a32e-a5e9e2196a90",
 		"name": "Books API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,11 +10,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/healthcheck",
+					"raw": "localhost:8001/api/healthcheck",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
 						"healthcheck"
@@ -41,11 +40,11 @@
 					"raw": "{\r\n\"isbn\" : \"123456\",\r\n\r\n\"author\" : \"lebimo18\",\r\n\r\n\"title\" : \"Awid ad keyfagh\",\r\n\r\n\"editor\" : \"hamiho18\",\r\n\r\n\"edition\" : 2002\r\n}"
 				},
 				"url": {
-					"raw": "localhost:8000/api/books",
+					"raw": "localhost:8001/api/books",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
 						"books"
@@ -60,14 +59,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/books",
+					"raw": "localhost:8001/api/books?author=string",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
 						"books"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "string"
+						}
 					]
 				}
 			},
@@ -87,14 +92,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"isbn\" : \"123456\",\r\n\r\n\"author\" : \"lebimo18\",\r\n\r\n\"title\" : \"Awid ad keyfagh !!\",\r\n\r\n\"editor\" : \"hamiho18\",\r\n\r\n\"edition\" : 2002\r\n}"
+					"raw": "{\r\n\"isbn\" : \"123456\",\r\n\r\n\"author\" : null,\r\n\r\n\"title\" : \"Awid ad keyfagh !!\",\r\n\r\n\"editor\" : null,\r\n\r\n\"edition\" : 0\r\n}"
 				},
 				"url": {
-					"raw": "localhost:8000/api/books",
+					"raw": "localhost:8001/api/books",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
 						"books"
@@ -109,11 +114,11 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/books/123456",
+					"raw": "localhost:8001/api/books/123456",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
 						"books",
@@ -129,20 +134,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/books?isbn=4541",
+					"raw": "localhost:8001/api/books/string",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
-						"books"
-					],
-					"query": [
-						{
-							"key": "isbn",
-							"value": "4541"
-						}
+						"books",
+						"string"
 					]
 				}
 			},
