@@ -59,7 +59,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8001/api/books?author=string",
+					"raw": "localhost:8001/api/books?author=hocine",
 					"host": [
 						"localhost"
 					],
@@ -92,7 +92,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"isbn\" : \"123456\",\r\n\r\n\"author\" : null,\r\n\r\n\"title\" : \"Awid ad keyfagh !!\",\r\n\r\n\"editor\" : null,\r\n\r\n\"edition\" : 0\r\n}"
+					"raw": "{\r\n\"isbn\" : \"123456\",\r\n\r\n\"author\" : null,\r\n\r\n\"title\" : \"Ayrad\",\r\n\r\n\"editor\" : null,\r\n\r\n\"edition\" : 0\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8001/api/books",
@@ -134,7 +134,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8001/api/books/string",
+					"raw": "localhost:8001/api/books/123456",
 					"host": [
 						"localhost"
 					],
