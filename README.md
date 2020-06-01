@@ -5,6 +5,7 @@ Afin de lancer le microservice
 
 - Récupérer le repository
 - Lancer un "mvn clean install"
+- Lancer un "mvn spring-boot:run"
 - aller sur : http://localhost:8001/api/swagger-ui.html#/
 
 Quelques détails
